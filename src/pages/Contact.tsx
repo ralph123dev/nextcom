@@ -33,7 +33,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Téléphone',
-      details: ['+221 33 123 45 67', '+221 77 123 45 67', 'Urgences: +221 70 123 45 67'],
+      details: ['+237 676 19 30 85', '+237 676 19 30 85', 'Urgences: +237 676 19 30 85'],
       color: 'from-blue-400 to-blue-600'
     },
     {
@@ -61,24 +61,24 @@ const Contact = () => {
 
   const offices = [
     {
-      city: 'Dakar',
-      country: 'Sénégal',
-      address: '123 Avenue de l\'Innovation',
-      phone: '+221 33 123 45 67',
+      city: 'Cameroun',
+      country: 'Douala',
+      address: '#',
+      phone: '+237 676 19 30 85',
       type: 'Siège Social'
     },
     {
       city: 'Abidjan',
       country: 'Côte d\'Ivoire',
       address: '456 Boulevard de la Technologie',
-      phone: '+225 27 123 45 67',
+      phone: '+237 676 19 30 85',
       type: 'Bureau Régional'
     },
     {
       city: 'Bamako',
       country: 'Mali',
       address: '789 Rue de l\'Innovation',
-      phone: '+223 20 123 45 67',
+      phone: '+237 676 19 30 85',
       type: 'Antenne Locale'
     }
   ];
@@ -111,7 +111,10 @@ const Contact = () => {
                 <Calendar className="h-5 w-5" />
                 <span>Planifier un rendez-vous</span>
               </button>
-              <button className="border-2 border-red-600 text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2">
+              <button
+                className="border-2 border-red-600 text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2"
+                onClick={() => window.location.href = 'tel:+237676193085'}
+              >
                 <Phone className="h-5 w-5" />
                 <span>Appel d'urgence</span>
               </button>
@@ -266,7 +269,9 @@ const Contact = () => {
                     <Users className="h-4 w-4" />
                     <span>Demander une démonstration</span>
                   </button>
-                  <button className="w-full bg-white text-red-600 py-3 px-4 rounded-lg font-medium hover:bg-red-600 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2">
+                  <button className="w-full bg-white text-red-600 py-3 px-4 rounded-lg font-medium hover:bg-red-600 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2"
+                    onClick={() => window.location.href = 'tel:+237676193085'}
+                  >
                     <Phone className="h-4 w-4" />
                     <span>Support technique urgent</span>
                   </button>
@@ -315,7 +320,10 @@ const Contact = () => {
                     </div>
                   </div>
                   
-                  <button className="w-full mt-6 bg-red-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors duration-300">
+                  <button
+                    className="w-full mt-6 bg-red-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors duration-300"
+                    onClick={() => window.location.href = `tel:${office.phone.replace(/\s+/g, '')}`}
+                  >
                     Contacter ce bureau
                   </button>
                 </div>
@@ -337,15 +345,18 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="h-16 w-16 text-red-600 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Carte Interactive</h3>
-              <p className="text-gray-600">
-                Intégration Google Maps disponible<br />
-                123 Avenue de l'Innovation, Dakar
-              </p>
-            </div>
+          <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center overflow-hidden">
+            <iframe
+              title="Google Maps Dakar"
+              src="https://www.google.com/maps?q=123+Avenue+de+l'Innovation,+Dakar&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-96 rounded-2xl"
+            ></iframe>
           </div>
         </div>
       </section>

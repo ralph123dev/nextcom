@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowRight, Zap, Wifi, Sun, Cpu } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero3D = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -12,10 +13,10 @@ const Hero3D = () => {
       const rect = container.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = (e.clientY - rect.top) / rect.height;
-      
+
       const rotateX = (y - 0.5) * 10;
       const rotateY = (x - 0.5) * -10;
-      
+
       container.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     };
 
@@ -55,19 +56,25 @@ const Hero3D = () => {
                 en Afrique
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
-                NEXTCOM S.A. révolutionne les infrastructures africaines avec des solutions 
+                NEXTCOM S.A. révolutionne les infrastructures africaines avec des solutions
                 intégrées en télécommunications, énergies renouvelables et technologies numériques.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="group bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2">
+              <Link
+                to="/energy"
+                className="group bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center space-x-2"
+              >
                 <span>Découvrir nos solutions</span>
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
-              <button className="group border-2 border-red-600 text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-all duration-300 transform hover:scale-105">
+              </Link>
+              <Link
+                to="/contact"
+                className="group border-2 border-red-600 text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+              >
                 Nous contacter
-              </button>
+              </Link>
             </div>
 
             {/* Stats */}
@@ -95,7 +102,7 @@ const Hero3D = () => {
               style={{ transformStyle: 'preserve-3d' }}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-red-700 rounded-2xl opacity-5"></div>
-              
+
               <div className="relative z-10 space-y-6">
                 <div className="text-center">
                   <Zap className="h-16 w-16 text-red-600 mx-auto mb-4 animate-pulse" />

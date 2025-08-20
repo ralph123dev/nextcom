@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Sun, Battery, Zap, Home, Building2, Factory } from 'lucide-react';
 
 const Energy = () => {
@@ -53,6 +53,23 @@ const Energy = () => {
     }
   ];
 
+  // Ajout pour coordonnées météo avec wttr.in (pas besoin de clé)
+  const [coords, setCoords] = useState<{ lat: string; lon: string } | null>(null);
+
+  useEffect(() => {
+    fetch('https://wttr.in/Dakar?format=j1')
+      .then(res => res.json())
+      .then(data => {
+        // wttr.in ne donne pas directement lat/lon, mais on peut utiliser nearest_area
+        if (data && data.nearest_area && data.nearest_area[0]) {
+          setCoords({
+            lat: data.nearest_area[0].latitude,
+            lon: data.nearest_area[0].longitude
+          });
+        }
+      });
+  }, []);
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -95,8 +112,10 @@ const Energy = () => {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-4 bg-green-50 rounded-lg">
-                    <div className="text-2xl font-bold text-green-600 mb-1">-50T</div>
-                    <div className="text-xs text-gray-600">CO₂ évité/an</div>
+                    <div className="text-2xl font-bold text-green-600 mb-1">
+                      {coords ? `${coords.lat}, ${coords.lon}` : 'Chargement...'}
+                    </div>
+                    <div className="text-xs text-gray-600">Coordonnées réelles (Dakar)</div>
                   </div>
                   <div className="text-center p-4 bg-blue-50 rounded-lg">
                     <div className="text-2xl font-bold text-blue-600 mb-1">25 ans</div>

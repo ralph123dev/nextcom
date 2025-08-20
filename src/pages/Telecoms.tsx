@@ -1,5 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Wifi, Radio, Globe, Shield, Smartphone, Building } from 'lucide-react';
+
+const Counter = ({ end, duration = 2500, suffix = '', prefix = '' }: { end: number, duration?: number, suffix?: string, prefix?: string }) => {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    let start = 0;
+    const startTime = performance.now();
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const current = start + (end - start) * progress;
+      setValue(Number(current.toFixed(1)));
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setValue(end);
+      }
+    };
+    requestAnimationFrame(animate);
+    // eslint-disable-next-line
+  }, [end, duration]);
+  return <span>{prefix}{value}{suffix}</span>;
+};
 
 const Telecoms = () => {
   const services = [
@@ -76,19 +98,27 @@ const Telecoms = () => {
               <div className="bg-white rounded-2xl shadow-2xl p-8">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center p-4 bg-red-50 rounded-lg">
-                    <div className="text-3xl font-bold text-red-600 mb-2">99.9%</div>
+                    <div className="text-3xl font-bold text-red-600 mb-2">
+                      <Counter end={99.9} suffix="%" />
+                    </div>
                     <div className="text-sm text-gray-600">Disponibilité réseau</div>
                   </div>
                   <div className="text-center p-4 bg-red-50 rounded-lg">
-                    <div className="text-3xl font-bold text-red-600 mb-2">1Gb/s</div>
+                    <div className="text-3xl font-bold text-red-600 mb-2">
+                      <Counter end={1} suffix="Gb/s" />
+                    </div>
                     <div className="text-sm text-gray-600">Débit maximum</div>
                   </div>
                   <div className="text-center p-4 bg-red-50 rounded-lg">
-                    <div className="text-3xl font-bold text-red-600 mb-2">500+</div>
+                    <div className="text-3xl font-bold text-red-600 mb-2">
+                      <Counter end={500} suffix="+" />
+                    </div>
                     <div className="text-sm text-gray-600">Sites déployés</div>
                   </div>
                   <div className="text-center p-4 bg-red-50 rounded-lg">
-                    <div className="text-3xl font-bold text-red-600 mb-2">24/7</div>
+                    <div className="text-3xl font-bold text-red-600 mb-2">
+                      <Counter end={24} suffix="/7" />
+                    </div>
                     <div className="text-sm text-gray-600">Support technique</div>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Cpu, Smartphone, Shield, Code, Wifi, Database, Users, BookOpen } from 'lucide-react';
 
 const Technology = () => {
@@ -58,6 +58,20 @@ const Technology = () => {
       impact: '2000+ apprenants formés'
     }
   ];
+
+  // Animation pour déplacer les éléments de chaque liste "features"
+  const [featuresState, setFeaturesState] = useState(services.map(s => [...s.features]));
+
+  // Fonction pour permuter deux éléments dans une liste
+  const swapFeatures = (serviceIdx: number, idxA: number, idxB: number) => {
+    setFeaturesState(prev => {
+      const newState = [...prev];
+      const arr = [...newState[serviceIdx]];
+      [arr[idxA], arr[idxB]] = [arr[idxB], arr[idxA]];
+      newState[serviceIdx] = arr;
+      return newState;
+    });
+  };
 
   return (
     <div className="pt-16">
@@ -138,9 +152,9 @@ const Technology = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.map((service, index) => (
+            {services.map((service, serviceIdx) => (
               <div
-                key={index}
+                key={serviceIdx}
                 className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 p-8"
               >
                 <div className="flex items-start space-x-4">
@@ -157,10 +171,26 @@ const Technology = () => {
                     </p>
                     
                     <ul className="space-y-2">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-gray-500">
+                      {featuresState[serviceIdx].map((feature, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-center text-sm text-gray-500 transition-all duration-500"
+                          style={{
+                            transform: `translateY(0px)`,
+                            transition: 'transform 0.5s'
+                          }}
+                        >
                           <div className="w-2 h-2 bg-red-600 rounded-full mr-3"></div>
                           {feature}
+                          {/* Bouton pour permuter avec le suivant */}
+                          {idx < featuresState[serviceIdx].length - 1 && (
+                            <button
+                              className="ml-2 px-2 py-1 text-xs bg-red-100 rounded hover:bg-red-200 transition"
+                              onClick={() => swapFeatures(serviceIdx, idx, idx + 1)}
+                            >
+                              ⇅
+                            </button>
+                          )}
                         </li>
                       ))}
                     </ul>

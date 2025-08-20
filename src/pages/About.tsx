@@ -38,18 +38,18 @@ const About = () => {
       description: 'Expert en infrastructures télécoms avec une vision stratégique pour l\'Afrique.'
     },
     {
-      name: 'Ing. Fatou NDIAYE',
+      name: 'Notre équipe d\'expert',
       role: 'Directrice Technique',
-      expertise: 'Énergies Renouvelables',
-      experience: '12+ ans',
+      expertise: 'Un peu plus sur nos experts techniciens',
+      experience: '',
       description: 'Spécialiste en systèmes solaires et solutions énergétiques durables.'
     },
     {
-      name: 'M. Ousmane KANE',
-      role: 'Directeur Innovation',
-      expertise: 'Technologies Numériques',
-      experience: '10+ ans',
-      description: 'Pionnier du développement logiciel et des solutions IoT en Afrique.'
+      name: 'Paolo',
+      role: 'DG',
+      expertise: 'CEO de NextCom',
+      experience: '',
+      description: 'pilier pour l\'afrique'
     }
   ];
 
@@ -268,12 +268,46 @@ const About = () => {
                 key={index}
                 className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
               >
-                <div className="h-48 bg-gradient-to-br from-red-400 to-red-600"></div>
+                {/* Affiche l'image pour Mr. Paolo kk */}
+                {member.name === 'Mr. Paolo kk' ? (
+                  <div className="h-48 flex items-center justify-center bg-gradient-to-br from-red-400 to-red-600">
+                    <img
+                      src="/me.png"
+                      alt={member.name}
+                      className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-lg"
+                    />
+                  </div>
+                ) : member.name === 'Notre équipe d\'expert' ? (
+                  <div className="h-48 flex items-center justify-center bg-gradient-to-br from-red-400 to-red-600">
+                    <img
+                      src="/people.png"
+                      alt={member.name}
+                      className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-lg"
+                    />
+                  </div>
+                ) : member.name === 'Paolo' ? (
+                  <div className="h-48 flex items-center justify-center bg-gradient-to-br from-red-400 to-red-600">
+                    <img
+                      src="/pdg.png"
+                      alt={member.name}
+                      className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-lg"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-48 bg-gradient-to-br from-red-400 to-red-600"></div>
+                )}
                 <div className="p-8">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
                   <div className="text-red-600 font-semibold mb-1">{member.role}</div>
-                  <div className="text-sm text-gray-500 mb-4">{member.expertise} • {member.experience}</div>
-                  <p className="text-gray-600 text-sm leading-relaxed">{member.description}</p>
+                  <div className="text-sm text-gray-500 mb-4">{member.expertise}{member.experience ? ` • ${member.experience}` : ''}</div>
+                  {/* Affiche les logos pour Mr. Paolo kk */}
+                  {member.name === 'Mr. Paolo kk' ? (
+                    <div className="flex justify-center gap-4 mt-4">
+                      {/* ...logos code, à remplacer par Bootstrap Icons si demandé... */}
+                    </div>
+                  ) : (
+                    <p className="text-gray-600 text-sm leading-relaxed">{member.description}</p>
+                  )}
                 </div>
               </div>
             ))}
