@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Zap } from 'lucide-react';
-import logo from '/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +35,7 @@ const Navbar = () => {
               <div className="absolute inset-0 bg-red-600 rounded-full opacity-20 scale-0 group-hover:scale-150 transition-all duration-500"></div>
             </div>
             <img
-              src={logo}
+              src="/logo.png"
               alt="Logo NEXTCOM"
               className="h-50 w-60 object-contain"
             />
