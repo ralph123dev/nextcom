@@ -33,7 +33,7 @@ const Navbar = () => {
               <Zap className="h-8 w-8 text-red-600 transform group-hover:scale-110 transition-transform duration-300" />
               <div className="absolute inset-0 bg-red-600 rounded-full opacity-20 scale-0 group-hover:scale-150 transition-all duration-500"></div>
             </div>
-            <img src="/logo.png" alt="Logo" className="h-8 w-auto" />
+            <img src="https://i.ibb.co/YBGP0fwH/logo.png" alt="logo" className="h-20 w-17" />
           </Link>
 
           {/* Desktop Menu */}
