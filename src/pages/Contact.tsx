@@ -324,7 +324,7 @@ const Contact = () => {
                   
                   <button
                     className="w-full mt-6 bg-red-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors duration-300"
-                    onClick={() => window.location.href = `tel:${office.phone.replace(/\s+/g, '')}`}
+                    onClick={() => window.location.href = `tel:${emergencyPhoneNumber.replace(/\s+/g, '')}`}
                   >
                     Contacter ce bureau
                   </button>
