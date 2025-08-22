@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Calendar, Users } from 'lucide-react';
 
 const Contact = () => {
+  const emergencyPhoneNumber = '+237 676 19 30 85';
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,7 +35,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Téléphone',
-      details: ['+237 676 19 30 85', '+237 676 19 30 85', 'Urgences: +237 676 19 30 85'],
+      details: [emergencyPhoneNumber, emergencyPhoneNumber, `Urgences: ${emergencyPhoneNumber}`],
       color: 'from-blue-400 to-blue-600'
     },
     {
@@ -64,21 +66,21 @@ const Contact = () => {
       city: 'Cameroun',
       country: 'Douala',
       address: '#',
-      phone: '+237 676 19 30 85',
+      phone: emergencyPhoneNumber,
       type: 'Siège Social'
     },
     {
       city: 'Abidjan',
       country: 'Côte d\'Ivoire',
       address: '456 Boulevard de la Technologie',
-      phone: '+237 676 19 30 85',
+      phone: emergencyPhoneNumber,
       type: 'Bureau Régional'
     },
     {
       city: 'Bamako',
       country: 'Mali',
       address: '789 Rue de l\'Innovation',
-      phone: '+237 676 19 30 85',
+      phone: emergencyPhoneNumber,
       type: 'Antenne Locale'
     }
   ];
@@ -113,7 +115,7 @@ const Contact = () => {
               </button>
               <button
                 className="border-2 border-red-600 text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2"
-                onClick={() => window.location.href = 'tel:+237676193085'}
+                onClick={() => window.location.href = `tel:${emergencyPhoneNumber.replace(/\s+/g, '')}`}
               >
                 <Phone className="h-5 w-5" />
                 <span>Appel d'urgence</span>
@@ -270,7 +272,7 @@ const Contact = () => {
                     <span>Demander une démonstration</span>
                   </button>
                   <button className="w-full bg-white text-red-600 py-3 px-4 rounded-lg font-medium hover:bg-red-600 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2"
-                    onClick={() => window.location.href = 'tel:+237676193085'}
+                    onClick={() => window.location.href = `tel:${emergencyPhoneNumber.replace(/\s+/g, '')}`}
                   >
                     <Phone className="h-4 w-4" />
                     <span>Support technique urgent</span>
